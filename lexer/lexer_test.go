@@ -28,8 +28,8 @@ if (5 < 10) {
 10 != 9;
 `
 
-tests := []struct {
-		expectedType token.TokenType
+	tests := []struct {
+		expectedType    token.TokenType
 		expectedLiteral string
 	}{
 		{token.LET, "let"},
@@ -108,18 +108,18 @@ tests := []struct {
 		{token.EOF, ""},
 	}
 
-	l := New(input)	
+	l := New(input)
 
 	for i, tt := range tests {
-			tok := l.NextToken()
-			if tok.Type != tt.expectedType {
-				t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q literal=%q",
+		tok := l.NextToken()
+		if tok.Type != tt.expectedType {
+			t.Fatalf("tests[%d] - tokentype wrong. expected=%q, got=%q literal=%q",
 				i, tt.expectedType, tok.Type, tok.Literal)
-			}
-			if tok.Literal != tt.expectedLiteral {
-				t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
-				i, tt.expectedLiteral, tok.Literal)
-			}
 		}
-		
+		if tok.Literal != tt.expectedLiteral {
+			t.Fatalf("tests[%d] - literal wrong. expected=%q, got=%q",
+				i, tt.expectedLiteral, tok.Literal)
+		}
+	}
+
 }
